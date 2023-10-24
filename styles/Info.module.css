@@ -1,0 +1,139 @@
+.wrapper {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    margin: 12px 0px 36px 0px;
+    max-width: 50vw;
+
+	  @media screen and (max-width: 1024px) {
+        max-width: 90vw;
+	  }
+  }
+  
+  .title {
+    margin: 36px 0px 0px 0px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    @media screen and (max-width: 720px) {
+        text-align: left;
+	  }
+  }
+
+  .paragraph { 
+    text-align: center;
+
+    @media screen and (max-width: 720px) {
+        text-align: left;
+	  }
+  }
+
+  .list {
+    margin-top: 24px;
+  }
+
+  .listTitle{
+    font-size: 18px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    @media screen and (max-width: 720px) {
+      text-align: left;
+  }
+  }
+
+  .listItem {
+    display: flex;
+    align-items:center;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-top: 16px;
+  }
+
+  .itemText {
+   margin-left: 16px;
+  }
+
+  .button {
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 8px;
+    gap: 8px;
+    background-color: #0494F5;
+    color: #ffffff;
+    height: 48px;
+    width: 100%;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    text-transform: none;
+  }
+
+  .buttonContainer {
+    position: relative;
+    width: 50vw;
+    z-index: 100;
+
+    @media screen and (max-width: 720px) {
+        width: 95%;
+        bottom: 36px;
+        position: fixed;
+	  }
+  }
+
+  .button:hover {
+    background-color: #0271c4;
+    color: #ffffff;
+  }
+
+  .iconButtonsWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 50%;
+    @media screen and (max-width: 720px) {
+        width: 95%;
+    }
+  }
+
+  .closeIcon {
+    cursor: pointer;  
+
+    @media screen and (max-width: 720px) {
+         margin-left: 12px; 
+	  }
+  }
+
+  .nextIcon {
+    cursor: pointer;  
+
+    @media screen and (max-width: 720px) {
+         margin-right: 12px; 
+	  }
+  }
+
+  

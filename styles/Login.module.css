@@ -1,0 +1,113 @@
+.wrapper {
+    margin: 36px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    max-width: 50vw;
+    position: relative;
+
+	@media screen and (max-width: 720px) {
+        max-width: 90vw;
+        margin-top: 10%;
+	}
+}
+
+.buttonsWrap{
+    display: flex;
+}
+
+.closeIcon {
+    position: absolute;
+    top: -12px; 
+    left: 25%; 
+    cursor: pointer;  
+
+    @media screen and (max-width: 720px) {
+         left: 24px; 
+	}
+}
+
+.title {
+    margin: 36px 0px 0px 0px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.paragraph { 
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #7B7B7B;
+}
+
+.buttonContainer {
+    bottom: 36px;
+    width: 80%;
+
+    @media screen and (max-width: 720px) {
+        width: 100%;
+        margin-top: 10%;
+	}
+}
+
+.signUpButton {
+    margin: 8px 0px;
+    padding: 16px;
+    border-radius: 8px;
+    gap: 8px;
+    background-color: #0494F5;
+    color: #ffffff;
+    height: 48px;
+    width: 100%;
+    text-transform: none;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.loginButton {
+    margin: 8px 0px;
+    padding: 16px;
+    border-radius: 8px;
+    gap: 8px;
+    background-color: #F0F9FF;
+    color: #0494F5;
+    height: 48px;
+    width: 100%;
+   
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    text-transform: none;
+}
+
+.signUpButton:hover {
+    background-color: #0271c4;
+    color: #ffffff;
+}
+
+.loginButton:hover {
+    background-color: #AEB7CE;
+    color: #ffffff;
+}
+
+
+
+  
