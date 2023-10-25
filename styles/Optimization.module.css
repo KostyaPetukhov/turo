@@ -18,6 +18,7 @@
 
 	  @media screen and (max-width: 1024px) {
         max-width: 90vw;
+        margin-bottom: 48px;
 	  }
   }
 
@@ -60,23 +61,23 @@
   }
 
   .button {
-    padding: 16px;
-    border-radius: 8px;
-    gap: 8px;
-    background-color: #0494F5;
-    color: #ffffff;
-    height: 48px;
-    width: 100%;
+    padding: 16px !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
+    background-color: #0494F5 !important;
+    color: #ffffff !important;
+    height: 48px !important;
+    width: 100% !important;
 
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 22px;
-    text-transform: none;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 22px !important;
+    text-transform: none !important;
   }
 
   .button:hover {
-    background-color: #0271c4;
-    color: #ffffff;
+    background-color: #0271c4 !important;
+    color: #ffffff !important;
   }
 
   

@@ -7,7 +7,9 @@ const Home = () => {
 	return (
 		<Layout title={"Home page"}>
 			<div className={styles.container}>
-				<h1 className={styles.title}>Find your drive</h1>
+				<Link href="/info">
+					<h1 className={styles.title}>Find your drive</h1>
+				</Link>
 			</div>
 		</Layout>
 	);
