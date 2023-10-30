@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 
+import { dialogTypes } from "../../types";
 import styles from "../../styles/Dialog.module.css";
+
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,7 +10,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-const AlertDialog = ({
+const AlertDialog:FC<dialogTypes> = ({
 	open,
 	handleClose,
 	dialogTitle,
@@ -48,10 +50,10 @@ const AlertDialog = ({
 			</DialogContent>
 			<DialogActions>
 				<div>
-					<Button onClick={handleDisagree} className={styles.disagree}>
+					<Button onClick={() => handleDisagree()} className={styles.disagree}>
 						{disagreeText}
 					</Button>
-					<Button onClick={handleAgree} className={styles.agree} autoFocus>
+					<Button onClick={() => handleAgree()}className={styles.agree} autoFocus>
 						{agreeText}
 					</Button>
 				</div>

@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+import { FC } from "react";
+import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 
 import Layout from "../layouts/main";
@@ -8,8 +9,8 @@ import optimazedImg from "../assets/images/optimazed.png";
 
 import Button from "@mui/material/Button";
 
-const Optimization = () => {
-	const router = useRouter();
+const Optimization: FC = () => {
+	const router: NextRouter = useRouter();
 	return (
 		<Layout title="Optimization">
 			<div className={styles.wrapper}>

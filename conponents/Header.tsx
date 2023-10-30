@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useState, FC, MouseEvent } from "react";
+import { useRouter, NextRouter } from "next/router";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,6 +14,16 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
+interface Page {
+	name: string;
+	url: string;
+  }
+  
+  interface Setting {
+	name: string;
+	url: string;
+  }
+
 const pages = [
 	{ name: "Info", url: "/info" },
 	{ name: "Optimization", url: "/optimization" },
@@ -21,25 +31,25 @@ const pages = [
 
 const settings = [{ name: "Login", url: "/login" }];
 
-const Header = () => {
-	const router = useRouter();
+const Header: FC = () => {
+	const router: NextRouter = useRouter();
 
-	const [anchorElNav, setAnchorElNav] = useState(null);
-	const [anchorElUser, setAnchorElUser] = useState(null);
+	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-	const handleOpenNavMenu = (event) => {
+	const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
 		setAnchorElNav(event.currentTarget);
 	};
-	const handleOpenUserMenu = (event) => {
+	const handleOpenUserMenu = (event: MouseEvent<HTMLButtonElement>) => {
 		setAnchorElUser(event.currentTarget);
 	};
 
-	const handleCloseNavMenu = (url) => {
+	const handleCloseNavMenu = (url: string) => {
 		setAnchorElNav(null);
 		router.push(url);
 	};
 
-	const handleCloseUserMenu = (url) => {
+	const handleCloseUserMenu = (url: string) => {
 		setAnchorElUser(null);
 		router.push(url);
 	};
@@ -81,7 +91,7 @@ const Header = () => {
 								aria-controls="menu-appbar"
 								aria-haspopup="true"
 								onClick={handleOpenNavMenu}
-								color="#323232"
+								color="default"
 							>
 								<MenuIcon />
 							</IconButton>

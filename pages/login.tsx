@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+import { FC } from "react";
+import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 
 import Layout from "../layouts/main";
@@ -9,8 +10,8 @@ import closeIcon from "../assets/icons/close-button.svg";
 
 import Button from "@mui/material/Button";
 
-const Login = () => {
-	const router = useRouter();
+const Login:FC = () => {
+	const router: NextRouter = useRouter();
 	return (
 		// <Layout title="Login">
 		<>

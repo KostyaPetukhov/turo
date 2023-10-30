@@ -1,9 +1,10 @@
+import { FC } from "react";
 import Link from "next/link";
 
 import Layout from "../layouts/main";
 import styles from "../styles/Home.module.css";
 
-const Home = () => {
+const Home:FC = () => {
 	return (
 		<Layout title={"Home page"}>
 			<div className={styles.container}>

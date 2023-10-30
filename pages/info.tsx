@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect, FC } from "react";
+import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 
 import Layout from "../layouts/main";
@@ -15,12 +15,12 @@ import nextIcon from "../assets/icons/arrow-right.svg";
 
 import Button from "@mui/material/Button";
 
-const Info = () => {
-	const router = useRouter();
-	const { openModal } = router.query;
+const Info:FC = () => {
+	const router: NextRouter = useRouter();
+	const { openModal }: { openModal?: string } = router.query;
 
-	const [openAlertDialog, setOpenAlertDialog] = useState(false);
-	const [openTrackActivityDialog, setOpenTrackActivityDialog] = useState(false);
+	const [openAlertDialog, setOpenAlertDialog] = useState<boolean>(false);
+	const [openTrackActivityDialog, setOpenTrackActivityDialog] = useState<boolean>(false);
 
 	useEffect(() => {
 		openModal && setOpenTrackActivityDialog(true);

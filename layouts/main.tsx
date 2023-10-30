@@ -1,10 +1,11 @@
-import { memo } from "react";
+import { memo, FC } from "react";
 import Head from "next/head";
 
+import { layoutProps } from "../types";
 import Header from "../conponents/Header";
 import Footer from "../conponents/Footer";
 
-const MainComponent = memo(
+const MainComponent:FC<layoutProps> = memo(
 	({ children, title = "Title", description = "Description", ...props }) => {
 		return (
 			<>
