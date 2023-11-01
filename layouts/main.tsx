@@ -1,24 +1,25 @@
-import { memo, FC } from "react";
+import { memo, type FC } from "react";
 import Head from "next/head";
 
-import { layoutProps } from "../types";
+import { type layoutProps } from "../types";
 import Header from "../conponents/Header";
-import Footer from "../conponents/Footer";
 
-const MainComponent:FC<layoutProps> = memo(
-	({ children, title = "Title", description = "Description", ...props }) => {
-		return (
-			<>
-				<Head>
-					<title>{title}</title>
-					<meta name="description" content={description} />
-				</Head>
-				<Header />
-				{children}
-				{/* <Footer /> */}
-			</>
-		);
-	}
+const MainComponent: FC<layoutProps> = memo(
+  ({ children, title = "Title", description = "Description", ...props }) => {
+    return (
+      <>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Head>
+        <Header />
+        {children}
+        {/* <Footer /> */}
+      </>
+    );
+  },
 );
+
+MainComponent.displayName = "MainComponent";
 
 export default MainComponent;

@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { type FC } from "react";
 
-const Footer:FC = () => {
-	return (
-		<footer>
-			<div>footer</div>
-		</footer>
-	);
+const Footer: FC = () => {
+  return (
+    <footer>
+      <div>footer</div>
+    </footer>
+  );
 };
 
 export default Footer;
