@@ -24,12 +24,12 @@ interface Setting {
   url: string;
 }
 
-const pages = [
+const pages: Page[] = [
   { name: "Info", url: "/info" },
   { name: "Optimization", url: "/optimization" },
 ];
 
-const settings = [{ name: "Login", url: "/login" }];
+const settings: Setting[] = [{ name: "Login", url: "/login" }];
 
 const Header: FC = () => {
   const router: NextRouter = useRouter();
@@ -37,21 +37,25 @@ const Header: FC = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>): void => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLButtonElement>): void => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (url: string) => {
+  const handleCloseNavMenu = (url: string): void => {
     setAnchorElNav(null);
-    router.push(url);
+    void router.push(url);
   };
 
-  const handleCloseUserMenu = (url: string) => {
+  const handleCloseUserMenu = (url: string): void => {
     setAnchorElUser(null);
-    router.push(url);
+    void router.push(url);
+  };
+
+  const handleRouterPush = (): void => {
+    void router.push("/");
   };
 
   return (
@@ -66,14 +70,14 @@ const Header: FC = () => {
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "San Francisco Pro Display",
+                fontFamily: "SF Pro Display",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "#323232",
                 textDecoration: "none",
                 cursor: "pointer",
               }}
-              onClick={async () => await router.push("/")}
+              onClick={handleRouterPush}
             >
               LOGO
             </Typography>
@@ -134,14 +138,14 @@ const Header: FC = () => {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "San Francisco Pro Display",
+                fontFamily: "SF Pro Display",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "#323232",
                 textDecoration: "none",
                 cursor: "pointer",
               }}
-              onClick={async () => await router.push("/")}
+              onClick={handleRouterPush}
             >
               LOGO
             </Typography>

@@ -1,11 +1,4 @@
-@font-face {
-  font-family: 'San Francisco';
-  font-weight: normal;
-  font-style: normal;
-  src: local('San Francisco'), local('SanFrancisco'),
-       url('/assets/fonts/SFProDisplay-Regular.woff2') format('woff2'),
-       url('/assets/fonts/SFProDisplay-Regular.woff') format('woff');
-}
+@import "../assets/fonts/SFProDisplay/stylesheet.css";
 
 html,
 body {
@@ -14,7 +7,7 @@ body {
   background-color: #FFFFFF;
   color: #323232;
   font-family:
-    'San Francisco',
+    'SF Pro Display',
     Inter,
     -apple-system,
     BlinkMacSystemFont,

@@ -37,12 +37,17 @@ const AlertDialog: FC<dialogTypes> = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title" className={styles.title}>
+      <DialogTitle
+        id="alert-dialog-title"
+        fontFamily={"SF Pro Display"}
+        className={styles.title}
+      >
         {dialogTitle}
       </DialogTitle>
       <DialogContent>
         <DialogContentText
           id="alert-dialog-description"
+          fontFamily={"SF Pro Display"}
           className={styles.content}
         >
           {dialogContent}
