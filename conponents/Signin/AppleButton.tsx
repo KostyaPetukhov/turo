@@ -3,14 +3,13 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Button, createTheme, ThemeProvider, Typography } from "@mui/material";
 
-import googleIcon from "../../assets/icons/google.svg";
+import appleIcon from "../../assets/icons/apple.svg";
 
 const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          width: "100%",
           height: "48px",
           padding: "16px",
           borderRadius: "8px",
@@ -47,7 +46,7 @@ const theme = createTheme({
   },
 });
 
-const GoogleButton = () => {
+const AppleButton = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/profile";
 
@@ -55,13 +54,13 @@ const GoogleButton = () => {
     <ThemeProvider theme={theme}>
       <Button
         variant="contained"
-        onClick={() => signIn("google", { callbackUrl })}
+        onClick={() => signIn("apple", { callbackUrl })}
       >
-        <Image src={googleIcon} alt="Google Icon" width={24} height={24} />
-        <Typography style={{ marginLeft: 8 }}>Continue with Google</Typography>
+        <Image src={appleIcon} alt="Apple Icon" width={24} height={24} />
+        <Typography style={{ marginLeft: 8 }}>Continue with Apple</Typography>
       </Button>
     </ThemeProvider>
   );
 };
 
-export default GoogleButton;
+export default AppleButton;

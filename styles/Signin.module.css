@@ -1,0 +1,50 @@
+.wrapper {
+    margin: 36px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.container {
+    max-width: 450px;
+    width: 100%;
+    padding: 0 20px; /* Добавьте отступы по вашему усмотрению */
+    box-sizing: border-box;
+    position: relative; 
+}
+
+.closeIcon {
+    position: absolute;
+    top: -12px; 
+    left: 10px; 
+    cursor: pointer;  
+
+    @media screen and (max-width: 720px) {
+         left: 24px; 
+	}
+}
+
+.title {
+    margin: 36px 0px 16px 0px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.buttonsContainer {
+    display: flex;   
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+.subtitle {
+    margin: 25px 0px 16px 0px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+}

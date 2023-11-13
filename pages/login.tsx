@@ -10,13 +10,14 @@ import Button from "@mui/material/Button";
 
 const Login: FC = () => {
   const router: NextRouter = useRouter();
-  const handleRouterPush = (): void => {
-    void router.push("/");
+
+  const handleRouterPush = (url: string): void => {
+    void router.push(url);
   };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.closeIcon} onClick={handleRouterPush}>
+      <div className={styles.closeIcon} onClick={() => handleRouterPush("/")}>
         <Image src={closeIcon} alt="Сlose page" />
       </div>
       <div className={styles.container}>
@@ -34,17 +35,13 @@ const Login: FC = () => {
         <div className={styles.buttonContainer}>
           <Button
             className={styles.signUpButton}
-            onClick={() => {
-              console.log("signup");
-            }}
+            onClick={() => handleRouterPush("/signup")}
           >
             Sign up
           </Button>
           <Button
             className={styles.loginButton}
-            onClick={() => {
-              console.log("login");
-            }}
+            onClick={() => handleRouterPush("/signin")}
           >
             Log in
           </Button>

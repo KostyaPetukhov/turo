@@ -31,8 +31,8 @@ const pages: Page[] = [
 ];
 
 const authSettings: Setting[] = [
-  { name: "Log in", url: "/login" },
-  { name: "Sign up", url: "/api/auth/signin" },
+  { name: "Log in", url: "/signin" },
+  { name: "Sign up", url: "/signup" },
 ];
 
 const userSettings: Setting[] = [
@@ -43,7 +43,6 @@ const userSettings: Setting[] = [
 const Header: FC = () => {
   const router: NextRouter = useRouter();
   const session = useSession();
-  console.log("session ---> ", session);
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);

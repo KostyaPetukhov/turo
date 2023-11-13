@@ -3,7 +3,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Button, createTheme, ThemeProvider, Typography } from "@mui/material";
 
-import googleIcon from "../../assets/icons/google.svg";
+import facebookIcon from "../../assets/icons/facebook.svg";
 
 const theme = createTheme({
   components: {
@@ -47,7 +47,7 @@ const theme = createTheme({
   },
 });
 
-const GoogleButton = () => {
+const FacebookButton = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/profile";
 
@@ -55,13 +55,15 @@ const GoogleButton = () => {
     <ThemeProvider theme={theme}>
       <Button
         variant="contained"
-        onClick={() => signIn("google", { callbackUrl })}
+        onClick={() => signIn("facebook", { callbackUrl })}
       >
-        <Image src={googleIcon} alt="Google Icon" width={24} height={24} />
-        <Typography style={{ marginLeft: 8 }}>Continue with Google</Typography>
+        <Image src={facebookIcon} alt="Facebook Icon" width={24} height={24} />
+        <Typography style={{ marginLeft: 8 }}>
+          Continue with Facebook
+        </Typography>
       </Button>
     </ThemeProvider>
   );
 };
 
-export default GoogleButton;
+export default FacebookButton;
