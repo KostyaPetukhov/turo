@@ -1,5 +1,6 @@
 import { useState, type FC, type MouseEvent } from "react";
 import { useRouter, type NextRouter } from "next/router";
+import { useSession, signOut } from "next-auth/react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -29,10 +30,20 @@ const pages: Page[] = [
   { name: "Optimization", url: "/optimization" },
 ];
 
-const settings: Setting[] = [{ name: "Login", url: "/login" }];
+const authSettings: Setting[] = [
+  { name: "Log in", url: "/login" },
+  { name: "Sign up", url: "/api/auth/signin" },
+];
+
+const userSettings: Setting[] = [
+  { name: "Profile", url: "/profile" },
+  { name: "Sign out", url: "/" },
+];
 
 const Header: FC = () => {
   const router: NextRouter = useRouter();
+  const session = useSession();
+  console.log("session ---> ", session);
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -51,7 +62,7 @@ const Header: FC = () => {
 
   const handleCloseUserMenu = (url: string): void => {
     setAnchorElUser(null);
-    void router.push(url);
+    url === "/" ? signOut({ callbackUrl: "/" }) : void router.push(url);
   };
 
   const handleRouterPush = (): void => {
@@ -166,7 +177,10 @@ const Header: FC = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Profile" src="" />
+                  <Avatar
+                    alt="Profile"
+                    src={`${session?.data ? session?.data.user?.image : ""}`}
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -185,16 +199,18 @@ const Header: FC = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting.name}
-                    onClick={() => {
-                      handleCloseUserMenu(setting.url);
-                    }}
-                  >
-                    <Typography textAlign="center">{setting.name}</Typography>
-                  </MenuItem>
-                ))}
+                {(session?.data ? userSettings : authSettings).map(
+                  (setting) => (
+                    <MenuItem
+                      key={setting.name}
+                      onClick={() => {
+                        handleCloseUserMenu(setting.url);
+                      }}
+                    >
+                      <Typography textAlign="center">{setting.name}</Typography>
+                    </MenuItem>
+                  ),
+                )}
               </Menu>
             </Box>
           </Toolbar>
