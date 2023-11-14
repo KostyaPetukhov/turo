@@ -11,16 +11,12 @@ export const authConfig: AuthOptions = {
         clientSecret: process.env.APPLE_SECRET as string,
       }),
       GoogleProvider({
-        clientId: "13803054790-ppdtei4h3f29pa2popr8dhntevq0fvbn.apps.googleusercontent.com",
-        clientSecret: "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",
-        // clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
-        // clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
+        clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
+        clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
       }),
       FacebookProvider({
-        clientId: "1401432350782174",
-        clientSecret: "cc6d555fe654366363dcd0cc07544d31",
-        // clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID as string,
-        // clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET as string,
+        clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID as string,
+        clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET as string,
       }),
       Credentials({
         credentials: {

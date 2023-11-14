@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { useRouter, NextRouter } from "next/router";
-import { signIn } from "next-auth/react";
 import { FormEventHandler } from "react";
 import {
   Button,
@@ -9,13 +8,8 @@ import {
   ThemeProvider,
   createTheme,
   Box,
-  IconButton,
   Typography,
-  InputAdornment,
 } from "@mui/material";
-
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const theme = createTheme({
   components: {
@@ -76,33 +70,18 @@ const theme = createTheme({
   },
 });
 
-const SignInForm: FC = () => {
+const SignUpForm: FC = () => {
   const router: NextRouter = useRouter();
   const [email, setEmail] = useState<string>("");
   const [emailTouched, setEmailTouched] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-
-    const res = await signIn("credentials", {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-      redirect: false,
-    });
-
-    if (res && !res.error) {
-      router.push("/profile");
-    } else {
-      alert("Something went wrong, check your data");
-    }
+    router.push("/signin");
   };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
     <ThemeProvider theme={theme}>
@@ -123,40 +102,8 @@ const SignInForm: FC = () => {
               }
             />
           </FormControl>
-          <FormControl>
-            <TextField
-              type={showPassword ? "text" : "password"}
-              name="password"
-              label="Password"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showPassword ? (
-                        <VisibilityOff
-                          style={{
-                            color: " #BDC7CB",
-                          }}
-                        />
-                      ) : (
-                        <Visibility
-                          style={{
-                            color: " #BDC7CB",
-                          }}
-                        />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </FormControl>
           <Button type="submit" variant="contained">
-            <Typography> Log in</Typography>
+            <Typography> Next</Typography>
           </Button>
         </Box>
       </form>
@@ -164,4 +111,4 @@ const SignInForm: FC = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

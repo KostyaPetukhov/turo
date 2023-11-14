@@ -1,5 +1,5 @@
 .wrapper {
-    margin: 36px 0;
+    margin: 36px 0px 12px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,11 +18,18 @@
     position: absolute;
     top: -12px; 
     left: 10px; 
-    cursor: pointer;  
 
-    @media screen and (max-width: 720px) {
-         left: 24px; 
-	}
+    height: 36px;
+    width: 36px;
+    cursor: pointer;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeIcon:hover {
+    background-color: #DDEEFF; 
+    border-radius: 50%; 
 }
 
 .title {
@@ -48,3 +55,23 @@
     letter-spacing: 0em;
     text-align: left;
 }
+
+.terms {
+    margin-top: 48px;
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #0494F5;
+    cursor: pointer;
+
+    @media screen and (max-width: 720px) {
+      bottom: 36px;
+      width: 95%;
+      position: fixed;
+    }
+  }
+  
