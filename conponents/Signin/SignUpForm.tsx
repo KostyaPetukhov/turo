@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
-import { useRouter, NextRouter } from "next/router";
-import { FormEventHandler } from "react";
+import { type FC, useState, type FormEventHandler } from "react";
+import { useRouter, type NextRouter } from "next/router";
+
 import {
   Button,
   TextField,
@@ -75,10 +75,12 @@ const SignUpForm: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [emailTouched, setEmailTouched] = useState<boolean>(false);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    router.push("/signin");
+    void router.push("/signin").catch((error) => {
+      console.error("An error occurred during navigation:", error);
+    });
   };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -91,8 +93,12 @@ const SignUpForm: FC = () => {
             <TextField
               name="email"
               label="Enter email address"
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => setEmailTouched(true)}
+              onChange={(e): void => {
+                setEmail(e.target.value);
+              }}
+              onBlur={(): void => {
+                setEmailTouched(true);
+              }}
               inputProps={{ pattern: emailPattern.source }}
               error={emailTouched && !emailPattern.test(email)}
               helperText={

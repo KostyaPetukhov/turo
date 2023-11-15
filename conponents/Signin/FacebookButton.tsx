@@ -1,3 +1,4 @@
+import { type FC } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -47,16 +48,17 @@ const theme = createTheme({
   },
 });
 
-const FacebookButton = () => {
+const FacebookButton: FC = () => {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/profile";
+  const callbackUrl = (searchParams.get("callbackUrl") as string) ?? "/profile";
+
+  const handleSignInWithFacebook = (): void => {
+    void signIn("facebook", { callbackUrl });
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Button
-        variant="contained"
-        onClick={() => signIn("facebook", { callbackUrl })}
-      >
+      <Button variant="contained" onClick={handleSignInWithFacebook}>
         <Image src={facebookIcon} alt="Facebook Icon" width={24} height={24} />
         <Typography style={{ marginLeft: 8 }}>
           Continue with Facebook

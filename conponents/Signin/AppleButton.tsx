@@ -1,3 +1,4 @@
+import { type FC } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -21,7 +22,7 @@ const theme = createTheme({
           border: "none",
           textTransform: "none",
           boxShadow: "none",
-          transition: "background-color 0.3s ease", // Добавлен переход для плавности изменения цвета
+          transition: "background-color 0.3s ease",
           "&:hover": {
             backgroundColor: "#DDEEFF",
             boxShadow: "none",
@@ -46,16 +47,17 @@ const theme = createTheme({
   },
 });
 
-const AppleButton = () => {
+const AppleButton: FC = () => {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/profile";
+  const callbackUrl = (searchParams.get("callbackUrl") as string) ?? "/profile";
+
+  const handleSignInWithApple = (): void => {
+    void signIn("apple", { callbackUrl });
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Button
-        variant="contained"
-        onClick={() => signIn("apple", { callbackUrl })}
-      >
+      <Button variant="contained" onClick={handleSignInWithApple}>
         <Image src={appleIcon} alt="Apple Icon" width={24} height={24} />
         <Typography style={{ marginLeft: 8 }}>Continue with Apple</Typography>
       </Button>

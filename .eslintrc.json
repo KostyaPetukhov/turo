@@ -27,5 +27,5 @@
         "react/prop-types": "off",
         "react/jsx-props-np-spreading": "off"
     },
-    "exclude": ["next.config.js"]
+    "ignorePatterns": ["next.config.js"]
 }

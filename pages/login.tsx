@@ -17,7 +17,12 @@ const Login: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.closeIcon} onClick={() => handleRouterPush("/")}>
+      <div
+        className={styles.closeIcon}
+        onClick={() => {
+          handleRouterPush("/");
+        }}
+      >
         <Image src={closeIcon} alt="Сlose page" />
       </div>
       <div className={styles.container}>
@@ -35,13 +40,17 @@ const Login: FC = () => {
         <div className={styles.buttonContainer}>
           <Button
             className={styles.signUpButton}
-            onClick={() => handleRouterPush("/signup")}
+            onClick={() => {
+              handleRouterPush("/signup");
+            }}
           >
             Sign up
           </Button>
           <Button
             className={styles.loginButton}
-            onClick={() => handleRouterPush("/signin")}
+            onClick={() => {
+              handleRouterPush("/signin");
+            }}
           >
             Log in
           </Button>

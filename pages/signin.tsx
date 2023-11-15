@@ -15,7 +15,7 @@ const Signin: FC = () => {
   const router: NextRouter = useRouter();
 
   const handleRouterBack = (): void => {
-    void router.back();
+    router.back();
   };
 
   return (

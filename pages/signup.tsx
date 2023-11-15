@@ -6,7 +6,7 @@ import Layout from "../layouts/main";
 import GoogleButton from "../conponents/Signin/GoogleButton";
 import FacebookButton from "../conponents/Signin/FacebookButton";
 import AppleButton from "../conponents/Signin/AppleButton";
-import SignUpForm from "../conponents/Signin/SignupForm";
+import SignUpForm from "../conponents/Signin/SignUpForm";
 
 import closeIcon from "../assets/icons/arrow-left.svg";
 import styles from "../styles/Signin.module.css";
@@ -15,7 +15,7 @@ const Signup: FC = () => {
   const router: NextRouter = useRouter();
 
   const handleRouterBack = (): void => {
-    void router.back();
+    router.back();
   };
 
   return (

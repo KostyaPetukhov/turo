@@ -1,7 +1,6 @@
-import { FC, useState } from "react";
-import { useRouter, NextRouter } from "next/router";
+import { type FC, type FormEventHandler, useState } from "react";
+import { useRouter, type NextRouter } from "next/router";
 import { signIn } from "next-auth/react";
-import { FormEventHandler } from "react";
 import {
   Button,
   TextField,
@@ -82,27 +81,34 @@ const SignInForm: FC = () => {
   const [emailTouched, setEmailTouched] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
-    const res = await signIn("credentials", {
+    signIn("credentials", {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
       redirect: false,
-    });
-
-    if (res && !res.error) {
-      router.push("/profile");
-    } else {
-      alert("Something went wrong, check your data");
-    }
+    })
+      .then((res) => {
+        if (res !== undefined && res.error == null) {
+          void router.push("/profile");
+        } else {
+          alert("Something went wrong, check your data");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred during signin:", error);
+        alert("An error occurred during signin");
+      });
   };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = (): void => {
+    setShowPassword((show) => !show);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -112,8 +118,12 @@ const SignInForm: FC = () => {
             <TextField
               name="email"
               label="Enter email address"
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => setEmailTouched(true)}
+              onChange={(e): void => {
+                setEmail(e.target.value);
+              }}
+              onBlur={(): void => {
+                setEmailTouched(true);
+              }}
               inputProps={{ pattern: emailPattern.source }}
               error={emailTouched && !emailPattern.test(email)}
               helperText={

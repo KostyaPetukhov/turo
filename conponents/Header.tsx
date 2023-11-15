@@ -61,7 +61,11 @@ const Header: FC = () => {
 
   const handleCloseUserMenu = (url: string): void => {
     setAnchorElUser(null);
-    url === "/" ? signOut({ callbackUrl: "/" }) : void router.push(url);
+    if (url === "/") {
+      void signOut({ callbackUrl: "/" });
+    } else {
+      void router.push(url);
+    }
   };
 
   const handleRouterPush = (): void => {
@@ -178,7 +182,9 @@ const Header: FC = () => {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Profile"
-                    src={`${session?.data ? session?.data.user?.image : ""}`}
+                    src={`${
+                      session?.data != null ? session?.data?.user?.image : ""
+                    }`}
                   />
                 </IconButton>
               </Tooltip>
@@ -198,7 +204,7 @@ const Header: FC = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {(session?.data ? userSettings : authSettings).map(
+                {(session?.data != null ? userSettings : authSettings).map(
                   (setting) => (
                     <MenuItem
                       key={setting.name}
