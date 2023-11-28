@@ -74,4 +74,37 @@
       position: fixed;
     }
   }
-  
+
+.label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #7B7B7B;
+    margin-bottom: 8px;
+}
+
+.paragraph {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.link {
+    color: #0494F5;
+    text-decoration: underline
+}
+
+.submitButton {
+    margin-top: 72px;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 720px) {
+      bottom: 24px;
+      width: 90%;
+      position: fixed;
+    }
+}

@@ -1,5 +1,7 @@
-import { type FC, useState, type FormEventHandler } from "react";
+import { type FC } from "react";
 import { useRouter, type NextRouter } from "next/router";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 import {
   Button,
@@ -72,44 +74,47 @@ const theme = createTheme({
 
 const SignUpForm: FC = () => {
   const router: NextRouter = useRouter();
-  const [email, setEmail] = useState<string>("");
-  const [emailTouched, setEmailTouched] = useState<boolean>(false);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-
-    void router.push("/signin").catch((error) => {
-      console.error("An error occurred during navigation:", error);
-    });
+  const initialValues = {
+    email: "",
   };
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      void router.push({
+        pathname: "/profile/registration",
+        query: { email: values.email },
+      });
+    },
+  });
 
   return (
     <ThemeProvider theme={theme}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <Box style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <FormControl>
             <TextField
               name="email"
               label="Enter email address"
-              onChange={(e): void => {
-                setEmail(e.target.value);
-              }}
-              onBlur={(): void => {
-                setEmailTouched(true);
-              }}
-              inputProps={{ pattern: emailPattern.source }}
-              error={emailTouched && !emailPattern.test(email)}
-              helperText={
-                emailTouched && !emailPattern.test(email)
-                  ? "Enter a valid email address"
-                  : ""
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+              error={
+                formik.touched.email === true && Boolean(formik.errors.email)
               }
+              helperText={formik.touched.email === true && formik.errors.email}
             />
           </FormControl>
           <Button type="submit" variant="contained">
-            <Typography> Next</Typography>
+            <Typography>Next</Typography>
           </Button>
         </Box>
       </form>

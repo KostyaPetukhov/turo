@@ -2,8 +2,8 @@ import { type FC } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-import Layout from "../layouts/main";
-import styles from "../styles/Home.module.css";
+import Layout from "../../layouts/main";
+import styles from "../../styles/Home.module.css";
 
 const Profile: FC = () => {
   const session = useSession();
