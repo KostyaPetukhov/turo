@@ -11,7 +11,6 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -28,6 +27,7 @@ interface Setting {
 const pages: Page[] = [
   { name: "Info", url: "/info" },
   { name: "Optimization", url: "/optimization" },
+  { name: "First trip", url: "/first-trip" },
 ];
 
 const authSettings: Setting[] = [
@@ -165,15 +165,15 @@ const Header: FC = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
+                <MenuItem
                   key={page.name}
                   onClick={() => {
                     handleCloseNavMenu(page.url);
                   }}
-                  sx={{ my: 2, color: "#323232", display: "block" }}
+                  sx={{ my: 1, color: "#323232", display: "block" }}
                 >
                   {page.name}
-                </Button>
+                </MenuItem>
               ))}
             </Box>
 

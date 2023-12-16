@@ -8,75 +8,13 @@ import {
   Button,
   TextField,
   FormControl,
-  ThemeProvider,
-  createTheme,
   Box,
   IconButton,
-  Typography,
   InputAdornment,
 } from "@mui/material";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
-const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          width: "100%",
-          height: 50,
-          padding: "0px 12px",
-          borderRadius: 8,
-          borderWidth: 1,
-          gap: 8,
-          backgroundColor: "#AEB7CE",
-          color: "#FFFFFF",
-          border: "none",
-          borderColor: " #BDC7CB",
-          textTransform: "none",
-          boxShadow: "none",
-          transition: "background-color 0.3s ease",
-          "&:hover": {
-            backgroundColor: "#DDEEFF",
-            boxShadow: "none",
-          },
-          "&:active": {
-            backgroundColor: "#AAD4FF",
-            boxShadow: "none",
-          },
-        },
-        outlined: {
-          borderWidth: 1,
-        },
-      },
-    },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontSize: 16,
-          fontWeight: 600,
-          fontFamily: "SF Pro Display",
-          color: "#FFFFFF",
-        },
-      },
-    },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          color: "#BDC7CB",
-          fontWeight: 400,
-          "& .MuiInputLabel-root": {
-            color: "#BDC7CB",
-          },
-          "&:active": {
-            borderColor: "#BDC7CB",
-          },
-        },
-      },
-    },
-  },
-});
 
 const SignInForm: FC = () => {
   const router: NextRouter = useRouter();
@@ -125,70 +63,72 @@ const SignInForm: FC = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <form onSubmit={formik.handleSubmit}>
-        <Box style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <FormControl>
-            <TextField
-              name="email"
-              label="Enter email address"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-              error={
-                formik.touched.email === true && Boolean(formik.errors.email)
-              }
-              helperText={formik.touched.email === true && formik.errors.email}
-            />
-          </FormControl>
-          <FormControl>
-            <TextField
-              type={showPassword ? "text" : "password"}
-              name="password"
-              label="Password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-              error={
-                formik.touched.password === true &&
-                Boolean(formik.errors.password)
-              }
-              helperText={
-                formik.touched.password === true && formik.errors.password
-              }
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showPassword ? (
-                        <VisibilityOff
-                          style={{
-                            color: " #BDC7CB",
-                          }}
-                        />
-                      ) : (
-                        <Visibility
-                          style={{
-                            color: " #BDC7CB",
-                          }}
-                        />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </FormControl>
-          <Button type="submit" variant="contained">
-            <Typography> Log in</Typography>
-          </Button>
-        </Box>
-      </form>
-    </ThemeProvider>
+    <form onSubmit={formik.handleSubmit}>
+      <Box style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <FormControl>
+          <TextField
+            name="email"
+            label="Enter email address"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            error={
+              formik.touched.email === true && Boolean(formik.errors.email)
+            }
+            helperText={formik.touched.email === true && formik.errors.email}
+          />
+        </FormControl>
+        <FormControl>
+          <TextField
+            type={showPassword ? "text" : "password"}
+            name="password"
+            label="Password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            error={
+              formik.touched.password === true &&
+              Boolean(formik.errors.password)
+            }
+            helperText={
+              formik.touched.password === true && formik.errors.password
+            }
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? (
+                      <VisibilityOff
+                        style={{
+                          color: " #BDC7CB",
+                        }}
+                      />
+                    ) : (
+                      <Visibility
+                        style={{
+                          color: " #BDC7CB",
+                        }}
+                      />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FormControl>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={!formik.isValid || !formik.dirty}
+        >
+          Log in
+        </Button>
+      </Box>
+    </form>
   );
 };
 

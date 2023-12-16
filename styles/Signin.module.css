@@ -99,12 +99,12 @@
 }
 
 .submitButton {
-    margin-top: 72px;
-    margin-bottom: 12px;
+    margin-top: 72px !important;
+    margin-bottom: 12px !important;
 
     @media screen and (max-width: 720px) {
-      bottom: 24px;
-      width: 90%;
-      position: fixed;
+      bottom: 24px !important;
+      width: 90% !important;
+      position: fixed !important;
     }
 }

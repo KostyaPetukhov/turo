@@ -59,7 +59,21 @@ const AlertDialog: FC<dialogTypes> = ({
             onClick={() => {
               handleDisagree();
             }}
-            className={styles.disagree}
+            sx={{
+              padding: "8px",
+              width: "auto",
+              fontSize: "17px",
+              fontWeight: 400,
+              lineHeight: "22px",
+              letterSpacing: "-0.40799999237060547px",
+              textAlign: "center",
+              color: "#007AFF",
+              backgroundColor: "#FFFFFF",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#FFFFFF",
+              },
+            }}
           >
             {disagreeText}
           </Button>
@@ -67,8 +81,21 @@ const AlertDialog: FC<dialogTypes> = ({
             onClick={() => {
               handleAgree();
             }}
-            className={styles.agree}
-            autoFocus
+            sx={{
+              padding: "8px",
+              width: "auto",
+              fontSize: "17px",
+              fontWeight: 600,
+              lineHeight: "22px",
+              letterSpacing: "-0.40799999237060547px",
+              textAlign: "center",
+              color: "#007AFF",
+              backgroundColor: "#FFFFFF",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#FFFFFF",
+              },
+            }}
           >
             {agreeText}
           </Button>
