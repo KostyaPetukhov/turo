@@ -2,7 +2,7 @@ import { type FC, type Dispatch, type SetStateAction, useState } from "react";
 import Image from "next/image";
 
 import PhotoUploader from "../PhotoUploader/PhotoUploader";
-import { Box, Button, Avatar } from "@mui/material";
+import { Box, Button, Avatar, Typography } from "@mui/material";
 import addPhotoIcon from "../../assets/icons/add.svg";
 import changePhotoIcon from "../../assets/icons/edit.svg";
 
@@ -60,17 +60,24 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
               src={photo}
               sx={{ width: "150px", height: "150px" }}
             />
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <Image src={addPhotoIcon} alt="Add a photo" />
-              <PhotoUploader title="Add a photo" setPhoto={setPhoto} />
-            </Box>
+            <PhotoUploader
+              setPhoto={setPhoto}
+              buttonContent={
+                <Box
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
+                  <Image src={addPhotoIcon} alt="Add a photo" />
+                  <Typography color="primary" sx={{ cursor: "pointer" }}>
+                    Add a photo
+                  </Typography>
+                </Box>
+              }
+            />
           </>
         ) : (
           <>
@@ -79,17 +86,24 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
               src={photo}
               sx={{ width: "150px", height: "150px" }}
             />
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <Image src={changePhotoIcon} alt="Change photo" />
-              <PhotoUploader title="Change photo" setPhoto={setPhoto} />
-            </Box>
+            <PhotoUploader
+              setPhoto={setPhoto}
+              buttonContent={
+                <Box
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
+                  <Image src={changePhotoIcon} alt="Change photo" />
+                  <Typography color="primary" sx={{ cursor: "pointer" }}>
+                    Change photo
+                  </Typography>
+                </Box>
+              }
+            />
           </>
         )}
       </Box>

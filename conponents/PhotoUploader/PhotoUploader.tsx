@@ -1,43 +1,48 @@
-import { Typography } from "@mui/material";
-import { type FC } from "react";
+import { type FC, type ReactNode, useRef } from "react";
 
 interface PhotoUploaderProps {
-  title: string;
   setPhoto: (photo: string) => void;
+  buttonContent: ReactNode;
 }
 
-const PhotoUploader: FC<PhotoUploaderProps> = ({ title, setPhoto }) => {
+const PhotoUploader: FC<PhotoUploaderProps> = ({
+  setPhoto,
+  buttonContent,
+  ...rest
+}) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const file = event.target.files?.[0];
+    if (file != null) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhoto(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleAddPhotoClick = (): void => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = "image/*";
-    fileInput.capture = "true";
-
-    fileInput.addEventListener("change", (event) => {
-      const selectedFile = (event.target as HTMLInputElement).files?.[0];
-
-      if (selectedFile != null) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const photoUrl = reader.result as string;
-          setPhoto(photoUrl);
-        };
-        reader.readAsDataURL(selectedFile);
-      }
-    });
-
-    fileInput.click();
+    if (fileInputRef.current != null) {
+      fileInputRef.current.click();
+    }
   };
 
   return (
-    <div>
-      <Typography
-        color="primary"
-        sx={{ cursor: "pointer" }}
-        onClick={handleAddPhotoClick}
-      >
-        {title}
-      </Typography>
+    <div {...rest}>
+      <input
+        accept="image/*"
+        type="file"
+        onChange={handleFileChange}
+        autoComplete="off"
+        tabIndex={-1}
+        style={{ display: "none" }}
+        ref={fileInputRef}
+      ></input>
+      <div onClick={handleAddPhotoClick}>{buttonContent}</div>
     </div>
   );
 };
