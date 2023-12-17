@@ -1,14 +1,8 @@
-import {
-  type FC,
-  type Dispatch,
-  type SetStateAction,
-  useState,
-  useRef,
-} from "react";
+import { type FC, type Dispatch, type SetStateAction, useState } from "react";
 import Image from "next/image";
 
-import { Box, Button, Avatar, Typography } from "@mui/material";
-
+import PhotoUploader from "../PhotoUploader/PhotoUploader";
+import { Box, Button, Avatar } from "@mui/material";
 import addPhotoIcon from "../../assets/icons/add.svg";
 import changePhotoIcon from "../../assets/icons/edit.svg";
 
@@ -31,26 +25,6 @@ interface ProfilePhotoFormProps {
 const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
   const { formData, setFormData, handleNextStep } = props;
   const [photo, setPhoto] = useState("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    const file = event.target.files?.[0];
-    if (file != null) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhoto(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleTypographyClick = (): void => {
-    if (fileInputRef.current != null) {
-      fileInputRef.current.click();
-    }
-  };
 
   const handleSubmit = (): void => {
     // TODO: логика для сохранения фото
@@ -81,15 +55,10 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
       >
         {photo.length === 0 ? (
           <>
-            {/* Скрытый input */}
-            <input
-              type="file"
-              accept="image/*"
-              //   capture="camera"
-              capture={true}
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-              ref={fileInputRef}
+            <Avatar
+              alt="User"
+              src={photo}
+              sx={{ width: "150px", height: "150px" }}
             />
             <Box
               style={{
@@ -99,14 +68,8 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
                 gap: 8,
               }}
             >
-              <Image src={addPhotoIcon} alt="Go back" />
-              <Typography
-                color="primary"
-                onClick={handleTypographyClick}
-                sx={{ cursor: "pointer" }}
-              >
-                Add a photo
-              </Typography>
+              <Image src={addPhotoIcon} alt="Add a photo" />
+              <PhotoUploader title="Add a photo" setPhoto={setPhoto} />
             </Box>
           </>
         ) : (
@@ -116,16 +79,6 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
               src={photo}
               sx={{ width: "150px", height: "150px" }}
             />
-            {/* Скрытый input */}
-            <input
-              type="file"
-              accept="image/*"
-              //   capture="camera"
-              capture={true}
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-              ref={fileInputRef}
-            />
             <Box
               style={{
                 display: "flex",
@@ -134,14 +87,8 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
                 gap: 8,
               }}
             >
-              <Image src={changePhotoIcon} alt="Go back" />
-              <Typography
-                color="primary"
-                onClick={handleTypographyClick}
-                sx={{ cursor: "pointer" }}
-              >
-                Change photo
-              </Typography>
+              <Image src={changePhotoIcon} alt="Change photo" />
+              <PhotoUploader title="Change photo" setPhoto={setPhoto} />
             </Box>
           </>
         )}
