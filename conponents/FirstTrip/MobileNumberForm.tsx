@@ -155,6 +155,7 @@ const MobileNumberForm: FC<MobileNumberFormProps> = (props) => {
             variant="contained"
             style={{ marginTop: 32 }}
             onClick={handleVerifyCodeClick}
+            disabled={otp.length < 6}
           >
             Submit
           </Button>

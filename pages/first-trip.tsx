@@ -1,8 +1,11 @@
 import { type FC, useState } from "react";
+import { useRouter, type NextRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 import Layout from "../layouts/main";
 
+import successImg from "../assets/images/success.png";
 import {
   Stepper,
   Step,
@@ -28,7 +31,16 @@ const ProfilePhotoForm = dynamic(
   },
 );
 
+const DriverLicenseForm = dynamic(
+  async () => await import("../conponents/FirstTrip/DriverLicenseForm"),
+  {
+    ssr: false,
+  },
+);
+
 const FirstTrip: FC = () => {
+  const router: NextRouter = useRouter();
+
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
     isPhoneNumberCopmlete: true,
@@ -62,15 +74,6 @@ const FirstTrip: FC = () => {
   //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
   // };
 
-  const handleReset = (): void => {
-    setActiveStep(0);
-    setFormData({
-      isPhoneNumberCopmlete: false,
-      isProfilePhotoCopmlete: false,
-      isDriverLicenseCopmlete: false,
-    });
-  };
-
   const getStepContent = (step: number): JSX.Element => {
     switch (step) {
       case 0:
@@ -90,11 +93,20 @@ const FirstTrip: FC = () => {
           />
         );
       case 2:
-        // return <SecondForm formData={formData} setFormData={setFormData} />;
-        return <div> Driver license</div>;
+        return (
+          <DriverLicenseForm
+            formData={formData}
+            setFormData={setFormData}
+            handleNextStep={handleNext}
+          />
+        );
       default:
         return <div>Unknow step</div>;
     }
+  };
+
+  const handleRouterPush = (): void => {
+    void router.push("/");
   };
 
   return (
@@ -105,7 +117,7 @@ const FirstTrip: FC = () => {
           justifyContent: "center",
         }}
       >
-        <Box style={{ margin: "50px", maxWidth: "500px" }}>
+        <Box style={{ margin: "30px", maxWidth: "500px" }}>
           <Typography variant="h1">Get approval to drive</Typography>
           <p style={{ color: "#7B7B7B" }}>
             Since this is your first trip, you’ll need to provide us with some
@@ -121,10 +133,38 @@ const FirstTrip: FC = () => {
             </Stepper>
             <div>
               {activeStep === steps.length ? (
-                <div>
-                  <Typography>All done</Typography>
-                  <Button onClick={handleReset}>Restart</Button>
-                </div>
+                <>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: 3,
+                    }}
+                  >
+                    <Image
+                      src={successImg}
+                      alt={"Form complete success"}
+                      height={200}
+                      width={300}
+                    />
+                  </Box>
+                  <Typography variant="h1" sx={{ marginTop: 4 }}>
+                    All done
+                  </Typography>
+                  <Typography sx={{ color: "#7B7B7B", marginTop: 2 }}>
+                    Congratulations, you have successfully created your account.
+                    Now you can enjoy all the benefits of traveling with our
+                    app. Good luck!
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    onClick={handleRouterPush}
+                    sx={{ marginTop: 5, marginBottom: 1 }}
+                  >
+                    Got it
+                  </Button>
+                </>
               ) : (
                 <div>
                   <Box

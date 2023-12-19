@@ -5,6 +5,7 @@ import PhotoUploader from "../PhotoUploader/PhotoUploader";
 import { Box, Button, Avatar, Typography } from "@mui/material";
 import addPhotoIcon from "../../assets/icons/add.svg";
 import changePhotoIcon from "../../assets/icons/edit.svg";
+import cameraImg from "../../assets/images/camera.png";
 
 interface ProfilePhotoFormProps {
   formData: {
@@ -37,6 +38,7 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
       style={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <p>
@@ -55,11 +57,7 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
       >
         {photo.length === 0 ? (
           <>
-            <Avatar
-              alt="User"
-              src={photo}
-              sx={{ width: "150px", height: "150px" }}
-            />
+            <Image alt="Add photo" src={cameraImg} width={150} height={150} />
             <PhotoUploader
               setPhoto={setPhoto}
               buttonContent={
@@ -107,7 +105,11 @@ const ProfilePhotoForm: FC<ProfilePhotoFormProps> = (props) => {
           </>
         )}
       </Box>
-      <Button variant="contained" onClick={handleSubmit}>
+      <Button
+        variant="contained"
+        onClick={handleSubmit}
+        disabled={photo.length === 0}
+      >
         Save and continue
       </Button>
     </Box>
