@@ -67,7 +67,7 @@ const Registration: FC = () => {
         alert("You must accept the terms of service");
         return;
       }
-      void router.push("/terms-of-service");
+      void router.push("/");
     },
   });
 

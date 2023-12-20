@@ -28,6 +28,7 @@ const pages: Page[] = [
   { name: "Info", url: "/info" },
   { name: "Optimization", url: "/optimization" },
   { name: "First trip", url: "/first-trip" },
+  { name: "Choose role", url: "/choose-role" },
 ];
 
 const authSettings: Setting[] = [

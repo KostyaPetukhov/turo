@@ -1,14 +1,16 @@
 import { type FC } from "react";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 
 import googleIcon from "../../assets/icons/google.svg";
 
-const GoogleButton: FC = () => {
-  const searchParams = useSearchParams();
-  const callbackUrl = (searchParams.get("callbackUrl") as string) ?? "/profile";
+interface GoogleButtonProps {
+  returnUrl: string;
+}
+
+const GoogleButton: FC<GoogleButtonProps> = ({ returnUrl }) => {
+  const callbackUrl = returnUrl.length > 0 ? returnUrl : "/profile";
 
   const handleSignInWithGoogle = (): void => {
     void signIn("google", { callbackUrl });

@@ -28,8 +28,8 @@ const Signin: FC = () => {
           <h1 className={styles.title}>Log in</h1>
           <div className={styles.buttonsContainer}>
             <AppleButton />
-            <GoogleButton />
-            <FacebookButton />
+            <GoogleButton returnUrl="/profile" />
+            <FacebookButton returnUrl="/profile" />
           </div>
           <h2 className={styles.subtitle}>Email log in</h2>
           <SignInFrom />

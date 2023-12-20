@@ -1,14 +1,16 @@
 import { type FC } from "react";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@mui/material";
 
 import facebookIcon from "../../assets/icons/facebook.svg";
 
-const FacebookButton: FC = () => {
-  const searchParams = useSearchParams();
-  const callbackUrl = (searchParams.get("callbackUrl") as string) ?? "/profile";
+interface FacebookButtonProps {
+  returnUrl: string;
+}
+
+const FacebookButton: FC<FacebookButtonProps> = ({ returnUrl }) => {
+  const callbackUrl = returnUrl.length > 0 ? returnUrl : "/profile";
 
   const handleSignInWithFacebook = (): void => {
     void signIn("facebook", { callbackUrl });

@@ -28,6 +28,13 @@ const theme = createTheme({
       marginBottom: 8,
       lineHeight: "19.6px",
     },
+    subtitle1: {
+      fontSize: 18,
+      fontWeight: 600,
+      lineHeight: "25px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
   },
   components: {
     MuiButton: {
@@ -109,6 +116,15 @@ const theme = createTheme({
           "&.Mui-checked": {
             color: "#0494F5",
           },
+        },
+      },
+    },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          color: "#0494F5",
+          backgroundColor: "#F0F9FF",
+          borderRadius: 8,
         },
       },
     },

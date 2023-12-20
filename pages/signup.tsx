@@ -28,8 +28,8 @@ const Signup: FC = () => {
           <h1 className={styles.title}>Sign up</h1>
           <div className={styles.buttonsContainer}>
             <AppleButton />
-            <GoogleButton />
-            <FacebookButton />
+            <GoogleButton returnUrl="/profile" />
+            <FacebookButton returnUrl="/profile" />
           </div>
           <h2 className={styles.subtitle}>Email sign up</h2>
           <SignUpForm />
