@@ -228,7 +228,11 @@ const InvestorInfo: FC = () => {
                       gap: 2,
                     }}
                   >
-                    <Button variant="contained" type="submit">
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      disabled={!formik.isValid || !formik.dirty}
+                    >
                       Registration
                     </Button>
                     <Typography sx={{ textAlign: "center", color: "#BDC7CB" }}>

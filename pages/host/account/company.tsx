@@ -5,13 +5,21 @@ import InsuranceSettingsForm from "../../../conponents/СompanyAccount/Insurance
 
 const CompanyAccount: FC = () => {
   const [isCompanyInfoSuccess, setIisCompanyInfoSuccess] = useState(false);
-
+  const [companyInfo, setCompanyInfo] = useState({
+    companyName: "",
+    companyEmail: "",
+    buisnessAddress: "",
+    phone: "",
+  });
   return (
     <>
       {!isCompanyInfoSuccess ? (
-        <CompanyInfoForm setIisCompanyInfoSuccess={setIisCompanyInfoSuccess} />
+        <CompanyInfoForm
+          setIisCompanyInfoSuccess={setIisCompanyInfoSuccess}
+          setCompanyInfo={setCompanyInfo}
+        />
       ) : (
-        <InsuranceSettingsForm />
+        <InsuranceSettingsForm companyInfo={companyInfo} />
       )}
     </>
   );
